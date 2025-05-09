@@ -9,62 +9,6 @@ import seaborn as sns
 import joblib
 import os
 
-# --- Debugging Information ---
-st.subheader("---- START DEBUG INFO ----")
-
-# 1. Current Working Directory (CWD)
-CWD = os.getcwd()
-st.write(f"**Current Working Directory (CWD):** `{CWD}`")
-
-# 2. List files in CWD
-st.write(f"**Files and folders in CWD ({CWD}):**")
-try:
-    files_in_cwd = os.listdir(CWD)
-    st.json(files_in_cwd) # st.json displays lists nicely
-    if 'Crime_Data_from_2020_to_Present.csv' in files_in_cwd:
-        st.success("`Crime_Data_from_2020_to_Present.csv` IS FOUND in CWD listing.")
-    else:
-        st.error("`Crime_Data_from_2020_to_Present.csv` IS NOT FOUND in CWD listing. Check case and exact name.")
-except Exception as e:
-    st.error(f"Error listing CWD contents: {e}")
-
-# 3. Intended Data Path
-DATA_PATH_EXPECTED = 'Crime_Data_from_2020_to_Present.csv' # Relative path
-st.write(f"**Expected relative DATA_PATH:** `{DATA_PATH_EXPECTED}`")
-
-# 4. Absolute path Streamlit will try to use
-#    When app.py is in crime-in-LA/, and DATA_PATH_EXPECTED is just the filename,
-#    os.path.abspath will combine CWD (which should be .../crime-in-LA/) and the filename.
-absolute_data_path = os.path.abspath(DATA_PATH_EXPECTED)
-st.write(f"**Calculated Absolute DATA_PATH:** `{absolute_data_path}`")
-
-# 5. Check if the absolute path exists
-st.write(f"**Does the absolute path exist?** `{os.path.exists(absolute_data_path)}`")
-if os.path.exists(absolute_data_path):
-    st.write(f"**Is it a file?** `{os.path.isfile(absolute_data_path)}`")
-    try:
-        file_size = os.path.getsize(absolute_data_path)
-        st.write(f"**File size:** `{file_size} bytes`")
-        if file_size < 2000: # LFS pointers are small (e.g. ~130 bytes)
-            st.warning("File size is very small. This might be an LFS pointer file instead of the actual data. Streamlit Cloud should handle LFS, but this is a check.")
-            try:
-                with open(absolute_data_path, 'r') as f_ptr:
-                    st.text("First 5 lines of the small file (potential LFS pointer):")
-                    for i in range(5):
-                        line = f_ptr.readline()
-                        if not line: break
-                        st.text(line.strip())
-            except Exception as e_read_ptr:
-                st.error(f"Could not read from small file: {e_read_ptr}")
-
-    except Exception as e_size:
-        st.error(f"Could not get file size: {e_size}")
-else:
-    st.error("The calculated absolute path DOES NOT EXIST. This is the primary issue.")
-
-st.subheader("---- END DEBUG INFO ----")
-st.markdown("---") # Separator
-
 # --- Configuration ---
 st.set_page_config(
     page_title="LA Crime Analysis (2020-2023)",
