@@ -612,7 +612,7 @@ if df_processed is not None and not df_processed.empty:
 
             st.subheader("SHAP Value Insights (Summary)")
             # Display saved SHAP plot
-            shap_plot_path = "shap_summary_plot.JPG"
+            shap_plot_path = "crime-in-LA/sshap_summary_plot.JPG"
             if os.path.exists(shap_plot_path):
                 st.image(shap_plot_path, caption="SHAP Summary Plot (Illustrative)", use_container_width=True)
             else:
