@@ -566,7 +566,7 @@ modeling insights, and public safety recommendations.
 """)
 
 # --- Load Data ---
-DATA_PATH = 'Crime_Data_from_2020_to_Present.csv' # Ensure this file is in the same directory
+DATA_PATH = 'crime-in-LA/Crime_Data_from_2020_to_Present.csv' # Ensure this file is in the same directory
 df_processed = load_preprocess_data(DATA_PATH)
 
 if df_processed is not None and not df_processed.empty:
