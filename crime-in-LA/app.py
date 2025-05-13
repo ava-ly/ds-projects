@@ -660,14 +660,14 @@ if df_processed is not None and not df_processed.empty:
             st.markdown("""
             *   **Overall Accuracy:** 65%
                 *   *Indicates the percentage of correctly classified crime incidents.*
-            *   **Best-performing class:** VIOLENT_CRIMES (F1 = 0.91)
+            *   **Best-performing class:** `VIOLENT_CRIMES` (F1 = 0.91)
                 *   *Model detects almost all violent crimes.*
-            *   **Worst-performing class:** OTHER_CRIMES (F1 = 0.00)
+            *   **Worst-performing class:** `OTHER_CRIMES` (F1 = 0.00)
                 *   *Model fails to classify these cases.*
-            *   **Low recall for minor crimes:** PUBLIC_DISORDER, SEX_OFFENSES…
+            *   **Low recall for minor crimes:** `PUBLIC_DISORDER`, `SEX_OFFENSES`…
                 *   *Model struggles with rare classes.*
             *   **Macro Avg (0.37 F1):** Poor performance on minority classes drags down the average.
-            *   **Weighted Avg (0.63 F1):** Better due to higher weight on majority classes (e.g., VIOLENT_CRIMES).
+            *   **Weighted Avg (0.63 F1):** Better due to higher weight on majority classes (e.g., `VIOLENT_CRIMES`).
             *   **Considerations:** An imbalance in crime categories can affect metrics. Focus on per-class performance for actionable insights.
             """)
         st.divider()
