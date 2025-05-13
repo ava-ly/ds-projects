@@ -310,7 +310,7 @@ def load_preprocess_data(csv_path):
     df['Weapon Group'] = df['Weapon Desc'].apply(lambda x: find_category(x, weapon_mapping))
 
     # Time Features
-    df['Year'] = df['DATE OCC'].dt.year
+    df['YearMonth'] = df['DATE OCC'].dt.to_period('M')
     df['Month'] = df['DATE OCC'].dt.month
     df['DayOfWeek'] = df['DATE OCC'].dt.dayofweek
     df['HourOCC'] = df['TIME OCC'].astype(str).str.zfill(4).str[:2].astype(int)
@@ -327,16 +327,12 @@ def load_preprocess_data(csv_path):
 def yearly_monthly_trends(df):
     fig, ax = plt.subplots(figsize=(10, 5))
     if not df.empty:
-        yearly_crimes = df.groupby(['Year', 'Month']).size().reset_index(name='Count')
-        sns.lineplot(data=yearly_crimes, x='Month', y='Count', hue='Year', palette='deep', marker='o', ax=ax)
+        monthly_crimes = df.groupby('YearMonth').size().sort_index()
+        monthly_crimes.plot(kind='line', marker='.', linestyle='-')
         ax.set_title('Yearly-Monthly Crime Trends (2020-2023)', fontsize=16)
-        ax.set_xlabel('Month', fontsize=12)
+        ax.set_xlabel('Month-Year', fontsize=12)
         ax.set_ylabel('Number of Crimes', fontsize=12)
-        ax.set_xticks(range(1, 13))
-        ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
-        ax.grid(True, linestyle='--', alpha=0.6)
-        ax.legend(title='Year')
+        ax.grid(True)
     else:
         ax.text(0.5, 0.5, 'No data available for this plot.',
                 horizontalalignment='center', verticalalignment='center',
@@ -367,7 +363,7 @@ def hourly_trends(df):
     if not df.empty:
         hourly_category = df.groupby(['HourOCC', 'Crime Category']).size().unstack()
         hourly_category.plot(kind='bar', stacked=True, color=sns.color_palette('deep'), width=0.8, ax=ax)
-        ax.set_title('Hourly Crime Trends by Category', fontsize=16)
+        ax.set_title('Hourly Crime Trends by Crime Categories', fontsize=16)
         ax.set_xlabel('Hour', fontsize=12)
         ax.set_ylabel('Number of Crimes', fontsize=12)
         ax.set_xticks(range(0, 24))
@@ -388,7 +384,7 @@ def seasonal_spikes(df, top_n=5):
         monthly_data = df[df['Crime Category'].isin(top_crimes)].groupby(['Month', 'Crime Category']).size().unstack()
         monthly_data.plot(kind='line', marker='o', ax=ax, colormap='tab10')
         
-        ax.set_title('Seasonal Trends for Top {top_n} Crime Categories', fontsize=16)
+        ax.set_title('Seasonal Spikes for Top 5 Crime Categories', fontsize=16)
         ax.set_xlabel('Month', fontsize=12)
         ax.set_ylabel('Number of Crimes', fontsize=12)
         ax.set_xticks(range(1, 13))
@@ -500,6 +496,40 @@ def weapon_heatmap(df):
     plt.tight_layout()
     return fig
 
+# def load_rf_model(model_path='rf_crime_model.joblib'):
+#     try:
+#         model_data = joblib.load(model_path)
+#         # The model_data dictionary should contain the model and the feature list
+#         # model = model_data['model']
+#         # features = model_data['features']
+#         st.success(f"Model loaded successfully from {model_path}")
+#         return model_data # Return the whole dictionary
+#     except FileNotFoundError:
+#         st.error(f"Model file not found at {model_path}. Please ensure it's in the app directory.")
+#         return None
+#     except Exception as e:
+#         st.error(f"Error loading model: {e}")
+#         return None
+
+def plot_feature_importance(filepath='top_features.csv'):
+    fig, ax = plt.subplots(figsize=(10, 5))
+    try:
+        top_features_df = pd.read_csv(filepath)
+        # Sort for plotting (highest at top)
+        top_features_df = top_features_df.sort_values('importance', ascending=True)
+        ax.barh(top_features_df["feature"], top_features_df["importance"], color='skyblue')
+        ax.set_title('Top 10 Feature Importances from Random Forest Model', fontsize=16)
+        ax.set_xlabel('Importance Score', fontsize=12)
+        ax.set_ylabel('Feature', fontsize=12)
+    except FileNotFoundError:
+         ax.text(0.5, 0.5, 'top_features.csv not found.', horizontalalignment='center', verticalalignment='center')
+         st.warning(f"Pre-computed feature importance file not found at: {filepath}")
+    except Exception as e:
+        ax.text(0.5, 0.5, f'Error loading features: {e}', horizontalalignment='center', verticalalignment='center')
+        st.error(f"Error loading feature importances: {e}")
+    plt.tight_layout()
+    return fig
+
 # --- Streamlit App UI ---
 st.title("📊 Crime Trends Analysis in Los Angeles (2020-2023)")
 st.markdown("""
@@ -531,19 +561,22 @@ if df_processed is not None and not df_processed.empty:
     with tabs[0]:
         st.header("🕒 Temporal Crime Patterns")
         st.markdown("How do crime rates vary by year, month, day of the week, and hour of the day?")
+        st.divider()
 
         col1, col2 = st.columns(2)
         with col1:
-            st.subheader("Monthly Trends per Year")
+            st.subheader("Yearly-Monthly Crime Trends (2020-2023)")
             st.pyplot(yearly_monthly_trends(df_processed))
         with col2:
-             st.subheader("Crimes by Day of Week")
+             st.subheader("Crime Trends by Day of the Week")
              st.pyplot(weekly_trends(df_processed))
+        st.divider()
 
-        st.subheader("Crimes by Hour of Day")
+        st.subheader("Hourly Crime Trends by Crime Categories")
         st.pyplot(hourly_trends(df_processed))
+        st.divider()
 
-        st.subheader("Seasonal Trends for Top Crime Categories")
+        st.subheader("Seasonal Spikes for Top 5 Crime Categories")
         st.pyplot(seasonal_spikes(df_processed, top_n=5))
 
 
@@ -551,6 +584,7 @@ if df_processed is not None and not df_processed.empty:
     with tabs[1]:
         st.header("📍 Geospatial Hotspots")
         st.markdown("Which areas have the highest crime rates, and are certain crimes concentrated?")
+        st.divider()
 
         # Allow sorting
         sort_options = ['Total'] + df_processed['Crime Category'].unique().tolist()
@@ -564,12 +598,12 @@ if df_processed is not None and not df_processed.empty:
     with tabs[2]:
         st.header("👥 Victim Demographics")
         st.markdown("Exploring the age, sex, and descent of victims across different crime types.")
-
+        st.divider()
         
         st.subheader("Victim Age Distribution by Descent")
         st.pyplot(victim_age(df_processed))
         st.caption("Box plots show median (line), interquartile range (box), and potential outliers (points).")
-
+        st.divider()
     
         st.subheader("Victim Age Groups")
         if 'Age Group' in df_processed.columns:
@@ -581,6 +615,7 @@ if df_processed is not None and not df_processed.empty:
             st.pyplot(fig_age_group)
         else:
             st.warning("Age Group column not found.")
+        st.divider()
 
         st.subheader("Crime Categories by Victim Sex (%)")
         st.pyplot(victim_sex(df_processed))
@@ -591,6 +626,8 @@ if df_processed is not None and not df_processed.empty:
     with tabs[3]:
         st.header("🔪 Weapon Usage Patterns")
         st.markdown("How does weapon usage vary by crime type? (Focuses on cases with known weapons)")
+        st.divider()
+
         st.pyplot(weapon_heatmap(df_processed))
         st.caption("Heatmap shows the percentage of times a specific weapon group was used within each crime category. Based only on incidents where a weapon type was reported (not 'None/Unknown').")
 
@@ -602,39 +639,79 @@ if df_processed is not None and not df_processed.empty:
         Results from a Random Forest model trained to predict the 'Crime Category'.
         **Note:** The model is not run live; these are pre-calculated results from the analysis phase.
         """)
+        st.divider()
 
-        col1, col2 = st.columns([2,1]) # Give more space to SHAP plot/text
+        # --- Model Performance Section ---
+        st.subheader("Model Predictive Performance")
+        perf_col1, perf_col2 = st.columns([2, 1])
 
-        with col1:
-            # st.subheader("Top Feature Importances")
-            # st.pyplot(plot_feature_importance(filepath='top_features.csv'))
-            # st.caption("Features that the Random Forest model found most influential in predicting the crime category.")
+        with perf_col1:
+            st.markdown("**Classification Report Overview**")
+            performance_image_path = "crime-in-LA/performance.png" 
+            if os.path.exists(performance_image_path):
+                st.image(performance_image_path, use_container_width=True)
+            else:
+                st.warning(f"Performance image not found at: {performance_image_path}")
+                st.info("Consider saving a visual summary of your classification report (e.g., a heatmap of precision/recall/f1) as 'performance.png'.")
 
-            st.subheader("SHAP Value Insights (Summary)")
-            # Display saved SHAP plot
-            shap_plot_path = "crime-in-LA/shap_summary_plot.JPG"
+
+        with perf_col2:
+            st.markdown("**Performance Summary & Key Metrics**")
+            st.markdown("""
+            *   **Overall Accuracy:** 65%
+                *   *Indicates the percentage of correctly classified crime incidents.*
+            *   **Best-performing class:** VIOLENT_CRIMES (F1 = 0.91)
+                *   *Model detects almost all violent crimes.*
+            *   **Worst-performing class:** OTHER_CRIMES (F1 = 0.00)
+                *   *Model fails to classify these cases.*
+            *   **Low recall for minor crimes:** PUBLIC_DISORDER, SEX_OFFENSES…
+                *   *Model struggles with rare classes.*
+            *   **Macro Avg (0.37 F1):** Poor performance on minority classes drags down the average.
+            *   **Weighted Avg (0.63 F1):** Better due to higher weight on majority classes (e.g., VIOLENT_CRIMES).
+            *   **Considerations:** An imbalance in crime categories can affect metrics. Focus on per-class performance for actionable insights.
+            """)
+        st.divider()
+
+        # --- Feature Importance Section ---
+        st.subheader("Understanding Feature Influence")
+        feat_col1, feat_col2 = st.columns([2, 1]) 
+
+        with feat_col1:
+            st.markdown("**Top Feature Importances**")
+            st.pyplot(plot_feature_importance(filepath='crime-in-LA/top_features.csv'))
+
+        with feat_col2:
+            st.markdown("**Interpreting Importances**")
+            st.markdown("""
+            This chart highlights the features that had the most significant impact on the model's ability to distinguish between different crime categories.
+
+            *   **High Importance:** Features at the top heavily influence predictions.
+            *   **Context is Key:** For example, `Vict Age` is crucial for identifying `CRIMES_AGAINST_CHILDREN`. `Weapon Desc...` suggests weapon used plays a strong role.
+            *   **`Part 1-2`:** Its high ranking indicates the seriousness classification is a fundamental distinguisher.
+            """)
+        st.divider()
+
+        # --- SHAP Section ---
+        st.subheader("SHAP Analysis: Feature Impact on Predictions")
+
+        shap_col1, shap_col2 = st.columns([2, 1])
+
+        with shap_col1:
+            st.markdown("**SHAP Value Summary Plot**")
+            shap_plot_path = "crime-in-LA/shap_summary_plot.jpg"
             if os.path.exists(shap_plot_path):
-                st.image(shap_plot_path, caption="SHAP Summary Plot (Illustrative)", use_container_width=True)
+                st.image(shap_plot_path, use_container_width=True)
             else:
                 st.warning(f"SHAP summary plot image not found at: {shap_plot_path}")
 
-        with col2:
-            st.subheader("Key SHAP Observations")
+        with shap_col2:
+            st.markdown("**Key SHAP Observations**")
             st.markdown("""
-            *   **Victim Age (`Vict Age`):** Lower ages strongly push predictions towards `CRIMES_AGAINST_CHILDREN`. Higher ages have less specific impact across categories.
-            *   **Weapon Features:** Presence of specific weapon descriptions (like `Weapon Desc_STRONG-ARM...`, `Weapon Desc_HAND GUN`) strongly influences predictions towards `VIOLENT_CRIMES` or `PUBLIC_SAFETY`.
-            *   **Time (`TIME OCC`, `day_of_week_occ`):** Certain hours (e.g., midday) slightly increase likelihood for `FRAUD_FINANCIAL`, while late nights might influence `VEHICLE_CRIMES` or `VIOLENT_CRIMES`. Day of week shows some patterns (e.g., Friday peak).
-            *   **Location (`AREA NAME_...`):** Specific areas strongly influence certain predictions (e.g., `AREA NAME_Central` features prominently).
-            *   **Part 1-2 (`Part 1-2`):** This classification (serious vs. less serious) is a highly important feature, distinguishing between categories like `THEFT_BURGLARY`/`VIOLENT_CRIMES` (often Part 1) and others.
-            *(Based on typical SHAP results for this type of problem)*
-            """)
-            st.subheader("Model Performance Snippet")
-            st.markdown("""
-            *(Example metrics from classification report - replace with your actuals)*
-            *   **Overall Accuracy:** ~XX% (Varies based on data sample/run)
-            *   **Key Challenge:** Distinguishing between high-volume, similar categories (e.g., types of theft).
-            *   **Stronger Prediction:** For categories with distinct features (e.g., `CRIMES_AGAINST_CHILDREN` based on age, `PUBLIC_SAFETY` based on weapon/order violations).
-            *   *(Add 1-2 specific precision/recall numbers if desired)*
+            *   **Victim Age (`Vict Age`):** Lower ages strongly push predictions towards `CRIMES_AGAINST_CHILDREN`. Higher ages have less specific impact.
+            *   **Weapon Features:** Presence of specific weapon descriptions (e.g., `Weapon Desc_STRONG-ARM...`, `Weapon Desc_HAND GUN`) strongly influences `VIOLENT_CRIMES` or `PUBLIC_SAFETY`.
+            *   **Time (`TIME OCC`, `day_of_week_occ`):** Certain hours (midday) slightly increase likelihood for `FRAUD_FINANCIAL`, late nights might influence `VEHICLE_CRIMES` or `VIOLENT_CRIMES`.
+            *   **Location (`AREA NAME_...`):** Specific areas strongly influence certain predictions (e.g., `AREA NAME_Central`).
+            *   **Part 1-2 (`Part 1-2`):** Highly important, distinguishing serious (Part 1) vs. less serious (Part 2) crimes across categories.
             """)
 
 
