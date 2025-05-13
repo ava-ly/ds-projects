@@ -647,7 +647,7 @@ if df_processed is not None and not df_processed.empty:
 
         with perf_col1:
             st.markdown("**Classification Report Overview**")
-            performance_image_path = "crime-in-LA/performance.png" 
+            performance_image_path = "crime-in-LA/performance.PNG" 
             if os.path.exists(performance_image_path):
                 st.image(performance_image_path, use_container_width=True)
             else:
@@ -698,7 +698,7 @@ if df_processed is not None and not df_processed.empty:
 
         with shap_col1:
             st.markdown("**SHAP Value Summary Plot**")
-            shap_plot_path = "crime-in-LA/shap_summary_plot.jpg"
+            shap_plot_path = "crime-in-LA/shap_summary_plot.JPG"
             if os.path.exists(shap_plot_path):
                 st.image(shap_plot_path, use_container_width=True)
             else:
