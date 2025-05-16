@@ -572,12 +572,13 @@ if df_processed is not None and not df_processed.empty:
              st.pyplot(weekly_trends(df_processed))
         st.divider()
 
-        st.subheader("Hourly Crime Trends by Crime Categories")
-        st.pyplot(hourly_trends(df_processed))
-        st.divider()
-
-        st.subheader("Seasonal Spikes for Top 5 Crime Categories")
-        st.pyplot(seasonal_spikes(df_processed, top_n=5))
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Hourly Crime Trends by Crime Categories")
+            st.pyplot(hourly_trends(df_processed))
+        with col2:
+            st.subheader("Seasonal Spikes for Top 5 Crime Categories")
+            st.pyplot(seasonal_spikes(df_processed, top_n=5))
 
 
     # --- Geospatial Tab ---
@@ -591,7 +592,7 @@ if df_processed is not None and not df_processed.empty:
         sort_by = st.selectbox("Sort Areas By:", options=sort_options, index=0, key='hotspot_sort')
 
         st.pyplot(crime_hotspots(df_processed, sort_by=sort_by))
-        st.caption("Showing the top 20 areas based on the selected sorting criteria.")
+        # st.caption("Showing the top 20 areas based on the selected sorting criteria.")
 
 
     # --- Demographics Tab ---
@@ -600,26 +601,26 @@ if df_processed is not None and not df_processed.empty:
         st.markdown("Exploring the age, sex, and descent of victims across different crime types.")
         st.divider()
         
-        st.subheader("Victim Age Distribution by Descent")
-        st.pyplot(victim_age(df_processed))
-        st.caption("Box plots show median (line), interquartile range (box), and potential outliers (points).")
-        st.divider()
-    
-        st.subheader("Victim Age Groups")
-        if 'Age Group' in df_processed.columns:
-            fig_age_group, ax_age_group = plt.subplots(figsize=(10, 5))
-            df_processed['Age Group'].value_counts().sort_index().plot(kind='bar', ax=ax_age_group, color='coral')
-            ax_age_group.set_title('Victim Count by Age Group')
-            ax_age_group.set_ylabel('Number of Victims')
-            ax_age_group.tick_params(axis='x', rotation=0)
-            st.pyplot(fig_age_group)
-        else:
-            st.warning("Age Group column not found.")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Victim Age Distribution by Descent")
+            st.pyplot(victim_age(df_processed))
+        
+        with col2:
+            st.subheader("Victim Age Groups")
+            if 'Age Group' in df_processed.columns:
+                fig_age_group, ax_age_group = plt.subplots(figsize=(10, 5))
+                df_processed['Age Group'].value_counts().sort_index().plot(kind='bar', ax=ax_age_group, color='coral')
+                ax_age_group.set_title('Victim Count by Age Group')
+                ax_age_group.set_ylabel('Number of Victims')
+                ax_age_group.tick_params(axis='x', rotation=0)
+                st.pyplot(fig_age_group)
+            else:
+                st.warning("Age Group column not found.")
         st.divider()
 
         st.subheader("Crime Categories by Victim Sex (%)")
         st.pyplot(victim_sex(df_processed))
-        st.caption("Stacked bar chart showing the percentage distribution of crime categories for each sex.")
 
 
     # --- Weapon Usage Tab ---
@@ -629,7 +630,7 @@ if df_processed is not None and not df_processed.empty:
         st.divider()
 
         st.pyplot(weapon_heatmap(df_processed))
-        st.caption("Heatmap shows the percentage of times a specific weapon group was used within each crime category. Based only on incidents where a weapon type was reported (not 'None/Unknown').")
+        # st.caption("Heatmap shows the percentage of times a specific weapon group was used within each crime category. Based only on incidents where a weapon type was reported (not 'None/Unknown').")
 
 
     # --- Modeling Insights Tab ---
