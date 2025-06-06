@@ -2,7 +2,7 @@
 
 ![Los Angeles](https://img.shields.io/badge/Los_Angeles-FF0000?logo=los-angeles&logoColor=white) Crime Trend Analysis in Los Angeles | [Completed](https://colab.research.google.com/drive/1AqGJYrLT7S_xg3T7Rwdc6l6W-KenIGR9?usp=sharing) | [Streamlit](https://crime-in-la.streamlit.app)
 
-- <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" width="30" alt="Netflix"> Netflix Content Analysis & Predictive Model Development | [Completed](https://colab.research.google.com/drive/195e05q0ZOsTWc9Hy8nVWTmOrEP1AR2B4?usp=sharing)
+- <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg" width="20" alt="Netflix"> Netflix Content Analysis & Predictive Model Development | [Completed](https://colab.research.google.com/drive/195e05q0ZOsTWc9Hy8nVWTmOrEP1AR2B4?usp=sharing)
 
 - <img src="https://www.freepnglogos.com/uploads/spacex-logo-png/spacex-logo-spacex-transparent-logo-download-0.png" width="80" alt="SpaceX"> SpaceX Falcon 9 First Stage Landing Prediction | [Completed](https://colab.research.google.com/drive/1rUMM7Aj3BKhup3LOyAcjsa9kkjU4nWLF?usp=sharing)
 
