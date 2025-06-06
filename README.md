@@ -4,6 +4,6 @@
 
 ![Netflix](https://img.shields.io/badge/Netflix-E50914?logo=netflix&logoColor=white) Netflix Content Analysis & Predictive Model Development | [Completed](https://colab.research.google.com/drive/195e05q0ZOsTWc9Hy8nVWTmOrEP1AR2B4?usp=sharing)
 
-![SpaceX](https://img.shields.io/badge/SpaceX-000000?logo=spacex&logoColor=white) SpaceX Falcon 9 First Stage Landing Prediction | [Completed](https://colab.research.google.com/drive/1rUMM7Aj3BKhup3LOyAcjsa9kkjU4nWLF?usp=sharing)
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/SpaceX_Logo_Black.svg" width="80" alt="SpaceX"> SpaceX Falcon 9 First Stage Landing Prediction | [Completed](https://colab.research.google.com/drive/1rUMM7Aj3BKhup3LOyAcjsa9kkjU4nWLF?usp=sharing)
 
 ![Spotify](https://img.shields.io/badge/Spotify-1DB954?logo=spotify&logoColor=white) Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
