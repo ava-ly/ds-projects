@@ -26,4 +26,4 @@
 - [Google AI Blog](https://research.google/blog/): Shares updates from Google’s AI research team.
 
 #### 3. Weekly Newsletter
-- [The Batch](https://www.deeplearning.ai/the-batch)(deeplearning.ai newsletter): A weekly newsletter highlighting practical research and industry news in deep learning, delivered to your inbox.
+- [The Batch](https://www.deeplearning.ai/the-batch) (deeplearning.ai newsletter): A weekly newsletter highlighting practical research and industry news in deep learning, delivered to your inbox.
