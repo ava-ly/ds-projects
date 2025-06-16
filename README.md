@@ -8,22 +8,21 @@
 
 - Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 
-...
+***
 
-# Staying updated with data science, machine learning, and AI.
+### Staying updated with data science, machine learning, and AI.
 
-1. News and Articles
-- Towards Data Science (towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
-- KDnuggets (kdnuggets.com): Provides news, articles, and trends in data science and AI, updated regularly with high-quality content.
-- Hacker Noon (AI tagged) (hackernoon.com): Features a variety of AI and machine learning articles, often with an accessible tone, updated frequently.
-- Science Daily (AI section) (sciencedaily.com): Aggregates news on the latest AI research, with daily updates.
-- Flipboard (Machine Learning topic) (flipboard.com): Curates news and articles from various sources, updated in real-time.
+#### 1. News and Articles
+- [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
+- [KDnuggets](https://www.kdnuggets.com): Provides news, articles, and trends in data science and AI, updated regularly with high-quality content.
+- [Hacker Noon](https://hackernoon.com): Features a variety of AI and machine learning articles, often with an accessible tone, updated frequently.
+- [Science Daily](https://sciencedaily.com): Aggregates news on the latest AI research, with daily updates.
 
-2. Research and Academic Updates
-- arXiv (arxiv.org): A repository for the latest research papers in computer science, including AI and machine learning, with daily uploads.
-- Papers with Code (paperswithcode.com): Combines research papers with code, ideal for staying updated on advancements, with regular updates.
-- Google AI Blog (ai.googleblog.com): Shares updates from Google’s AI research team, though updates may be less frequent.
-- Distill.pub (distill.pub): Offers in-depth, interactive articles on machine learning, great for understanding complex concepts, updated periodically.
+#### 2. Research and Academic Updates
+- [arXiv](https://arxiv.org): A repository for the latest research papers in computer science, including AI and machine learning.
+- [Papers with Code](https://paperswithcode.com): Combines research papers with code, ideal for staying updated on advancements.
+- [Google AI Blog](https://research.google/blog/): Shares updates from Google’s AI research team.
+- [Distill.pub](https://distill.pub): Offers in-depth, interactive articles on machine learning, great for understanding complex concepts.
 
-3. Weekly Newsletter
-- The Batch (deeplearning.ai newsletter) (deeplearning.ai): A weekly newsletter highlighting practical research and industry news in deep learning, delivered to your inbox.
+#### 3. Weekly Newsletter
+- [The Batch (deeplearning.ai newsletter)](https://www.deeplearning.ai/the-batch): A weekly newsletter highlighting practical research and industry news in deep learning, delivered to your inbox.
