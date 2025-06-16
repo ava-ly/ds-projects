@@ -12,16 +12,16 @@
 
 ### Staying Updated with Data Science, Machine Learning and AI
 
-#### 1. News and Articles
+1. News and Articles
 - [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
 - [KDnuggets](https://www.kdnuggets.com): Provides news, articles, and trends in data science and AI, updated regularly with high-quality content.
 - [HackerNoon](https://hackernoon.com): Features a variety of AI and machine learning articles.
 - [ScienceDaily](https://sciencedaily.com): Aggregates news on the latest AI research.
 
-#### 2. Research and Academic Updates
+2. Research and Academic Updates
 - [arXiv](https://arxiv.org): A repository for the latest research papers in computer science, including AI and machine learning.
 - [Papers with Code](https://paperswithcode.com): Combines research papers with code, ideal for staying updated on advancements.
 - [Google AI Blog](https://research.google/blog/): Shares updates from Google’s AI research team.
 
-#### 3. Weekly Newsletter
+3. Weekly Newsletter
 - [The Batch](https://www.deeplearning.ai/the-batch): A weekly newsletter from deeplearning.ai highlighting practical research and industry news in deep learning.
