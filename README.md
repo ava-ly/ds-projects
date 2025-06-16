@@ -9,8 +9,8 @@
 - Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 
 
+## Staying Updated with Data Science, Machine Learning and AI
 
-### Staying Updated with Data Science, Machine Learning and AI
 - [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
 - [KDnuggets](https://www.kdnuggets.com): Provides news, articles, and trends in data science and AI, updated regularly with high-quality content.
 - [HackerNoon](https://hackernoon.com): Features a variety of AI and machine learning articles.
