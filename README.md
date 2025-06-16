@@ -10,9 +10,7 @@
 
 
 
-***
-
-### Staying updated with Data Science, Machine Learning and AI
+### Staying Updated with Data Science, Machine Learning and AI
 
 #### 1. News and Articles
 - [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
