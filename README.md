@@ -1,4 +1,4 @@
-# Data Science and Machine Learning Projects
+## Data Science and Machine Learning Projects
 
 - Crime Trend Analysis in Los Angeles | [Completed](https://colab.research.google.com/drive/1AqGJYrLT7S_xg3T7Rwdc6l6W-KenIGR9?usp=sharing) | [Streamlit](https://crime-in-la.streamlit.app)
 
@@ -8,9 +8,11 @@
 
 - Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 
+
+
 ***
 
-### Staying updated with data science, machine learning, and AI.
+### Staying updated with Data Science, Machine Learning and AI.
 
 #### 1. News and Articles
 - [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
