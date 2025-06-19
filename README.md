@@ -1,5 +1,7 @@
 ## Data Science and Machine Learning Projects
 
+.. |OK_ICON| image:: https://raw.githubusercontent.com/awesomedata/apd-core/master/deploy/ok-24.png
+
 ### |OK_ICON| 1. Crime Trend Analysis in Los Angeles | [Completed](https://colab.research.google.com/drive/1AqGJYrLT7S_xg3T7Rwdc6l6W-KenIGR9?usp=sharing) | [Streamlit App](https://crime-in-la.streamlit.app)
 -----------
 
