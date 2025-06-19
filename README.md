@@ -19,6 +19,14 @@ Project Goals:
 - Perform a comprehensive exploratory data analysis (EDA) on the "Most Streamed Spotify Songs 2024" dataset to uncover trends, patterns, and relationships in modern music success.
 - Apply unsupervised clustering techniques to identify distinct "success profiles" of hit songs based on their performance across various streaming and social media platforms.
 
+### 5. A Data-Driven Analysis of YouTube Trends and Sentiment in USA | Ongoing
+Project Goals:
+- Characterize Trending Videos through Exploratory Data Analysis (EDA).
+- Develop a machine learning regression model to predict the view count of a trending video based on its features.
+- Apply Natural Language Processing (NLP) techniques to calculate a sentiment score for video comments.
+- Use unsupervised clustering (K-Means) to discover distinct characteristics of trending videos (e.g., "Viral Sensations," "Niche Favorites").
+- Conduct a time-series analysis to understand how YouTube trends and category popularity have evolved over time.
+
 ---
 ## Staying Updated with Data Science, Machine Learning and AI
 
