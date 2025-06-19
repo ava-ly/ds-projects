@@ -1,9 +1,9 @@
 ## Data Science and Machine Learning Projects
 
-.. |OK_ICON| image:: https://raw.githubusercontent.com/awesomedata/apd-core/master/deploy/ok-24.png
+.. |OK_ICON| image:: https://raw.githubusercontent.com/ava-ly/ds-projects/icon/ok-24.png
 
 ### |OK_ICON| 1. Crime Trend Analysis in Los Angeles | [Completed](https://colab.research.google.com/drive/1AqGJYrLT7S_xg3T7Rwdc6l6W-KenIGR9?usp=sharing) | [Streamlit App](https://crime-in-la.streamlit.app)
------------
+--
 
 - Exploratory Data Analysis revealed that crime in Los Angeles is highly patterned and predictable to a degree, driven by a combination of temporal, spatial, situational, and victim-related factors. These patterns can be leveraged for more targeted and efficient public safety interventions.
 - Random Forest model can predict broad crime categories with moderate overall accuracy (~65%-70%), performing very well for high-volume, distinct categories like 'Violent Crimes' but struggling with rarer or more ambiguous ones.
