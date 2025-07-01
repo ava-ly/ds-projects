@@ -6,32 +6,37 @@
 - Random Forest model can predict broad crime categories with moderate overall accuracy (~65%-70%), performing very well for high-volume, distinct categories like 'Violent Crimes' but struggling with rarer or more ambiguous ones.
 - Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Random Forest, SHAP.
 
-## 2. Netflix Content Analysis & Predictive Model Development | [Completed](https://colab.research.google.com/drive/195e05q0ZOsTWc9Hy8nVWTmOrEP1AR2B4?usp=sharing) ![icon-url]
+## 2. Comprehensive Analysis of YouTube Trends and Sentiment | [Completed](https://colab.research.google.com/drive/1yhXNNGmD7NYGAnSCsWNFa5uCoV4z3pOW?usp=sharing) ![icon-url]
+- Exploratory Data Analysis revealed the strong positive relationship between views and likes. Music, Entertainment have a massive number of comments which could indicate controversy or high engagement. The vast majority of videos hit the trending page within 0-5 days of being published. This highlights the importance of initial velocity and momentum. 
+- The predictive model (RandomForestRegressor with an R² score of ~0.99+) revealed that `likes` and `dislikes` are overwhelmingly the most powerful predictors of a video's view count. This indicates that the YouTube algorithm heavily favors content that elicits a strong and immediate reaction, positive or negative.
+- Unsupervised clustering (K-Means) identified five clear strategies for trending content: Viral Super-Storms, Blockbuster Hits, Fan Favorites, CLickbait/SEO Masters, Long-Tail Sleepers.
+- Time-series analysis of the core dataset period Oct2017 - Jun 2018 showed that while "Music" consistently dominated total viewership.
+- Topic Modeling (LDA) on video titles and descriptions successfully identified distinct thematic clusters and a heatmap analysis confirmed a strong correlation between these discovered topics and the official YouTube categories.
+- Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Random Forest, KMeans, vaderSentiment, spaCy, Latent Dirichlet Allocation (LDA).
+
+## 3. Netflix Content Analysis & Predictive Model Development | [Completed](https://colab.research.google.com/drive/195e05q0ZOsTWc9Hy8nVWTmOrEP1AR2B4?usp=sharing) ![icon-url]
 
 - Exploratory Data Analysis revealed a dynamic Netflix catalog, predominantly featuring movies over TV shows. The United States is the primary content producer, followed by countries like India and the UK. Genres like Drama, Comedy, and Thriller are prevalent. IMDb scores show a somewhat normal distribution, with clear distinctions in rating patterns between movies and TV shows, and variations across different genres and release eras. Documentaries, interestingly, emerged as a genre with distinct rating characteristics.
 - After initial training, XGBoost (with early stopping using a validation set) demonstrated the most promising performance, achieving a Test R² of approximately ~0.55-0.60 and a Test MAE of around ~0.6-0.7. This indicates the model can explain a significant portion of the variance in IMDb scores. However, the initial XGBoost evaluation using the test set for early stopping might present slightly optimistic scores.
 - Tools: Pandas, Numpy, Matplotlib, Seaborn, NLTK, WordCloud, Sklearn, Scipy, Regression (Linear, Ridge, Lasso), Tree-based (XGBoost, Gradient Boosting, and Random Forest).
 
-## 3. SpaceX Falcon 9 First Stage Landing Prediction | [Completed](https://colab.research.google.com/drive/1rUMM7Aj3BKhup3LOyAcjsa9kkjU4nWLF?usp=sharing) ![icon-url]
+## 4. SpaceX Falcon 9 First Stage Landing Prediction | [Completed](https://colab.research.google.com/drive/1rUMM7Aj3BKhup3LOyAcjsa9kkjU4nWLF?usp=sharing) ![icon-url]
 
 - Exploratory Data Analysis revealed that variables like `LaunchSite`, `Orbit`, `PayloadMass`, and `FlightNumber` (as a proxy for experience/booster block improvements) show potential relationships with landing success and are important candidates for feature engineering and model training. The temporal improvement in success rates also suggests that time-related features or more recent data might be particularly relevant.
 - Based on the evaluated metrics (Accuracy, Jaccard Index, and F1-Score) on the unseen test data, the K-Nearest Neighbors (KNN) model demonstrated the most promising performance for predicting Falcon 9 first stage landing success. Logistic Regression and Decision Tree also provided respectable results. SVM, in its current configuration, was less effective.
 - Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Logistic Regression, Support Vector Machine (SVM), Decision Tree, K-Nearest Neighbors (KNN).
 
-## 4. Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
+## 5. Credit Card Approval Prediction | Ongoing
+Project Goals:
+- Exploratory Data Analysis (EDA) to understand data distributions, missing values, and relationships.
+- Build a classification model to predict credit card approval (Approved = 1, Rejected = 0).
+- Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Logistic Regression, Random Forest, XGBoost, LightGBM.
 
+## 6. Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 Project Goals:
 - Perform a comprehensive exploratory data analysis (EDA) on the "Most Streamed Spotify Songs 2024" dataset to uncover trends, patterns, and relationships in modern music success.
 - Apply unsupervised clustering techniques to identify distinct "success profiles" of hit songs based on their performance across various streaming and social media platforms.
-
-## 5. Comprehensive Analysis of YouTube Trends and Sentiment | Ongoing
-
-Project Goals:
-- Characterize Trending Videos through Exploratory Data Analysis (EDA).
-- Develop a machine learning regression model to predict the view count of a trending video based on its features.
-- Apply Natural Language Processing (NLP) techniques to calculate a sentiment score for video comments.
-- Use unsupervised clustering (K-Means) to discover distinct characteristics of trending videos (e.g., "Viral Sensations," "Niche Favorites").
-- Conduct a time-series analysis to understand how YouTube trends and category popularity have evolved over time.
+- Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, KMeans, PCA.
 
 ---
 ## Staying Updated with Data Science, Machine Learning and AI
