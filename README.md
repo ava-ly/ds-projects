@@ -26,11 +26,9 @@
 - Based on the evaluated metrics (Accuracy, Jaccard Index, and F1-Score) on the unseen test data, the K-Nearest Neighbors (KNN) model demonstrated the most promising performance for predicting Falcon 9 first stage landing success. Logistic Regression and Decision Tree also provided respectable results. SVM, in its current configuration, was less effective.
 - Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Logistic Regression, Support Vector Machine (SVM), Decision Tree, K-Nearest Neighbors (KNN).
 
-## 5. Credit Card Approval Prediction | Ongoing
-Project Goals:
-- Exploratory Data Analysis (EDA) to understand data distributions, missing values, and relationships.
-- Build a classification model to predict credit card approval (Approved = 1, Rejected = 0).
-- Tools: Pandas, Numpy, Matplotlib, Seaborn, Sklearn, Logistic Regression, Random Forest, XGBoost, LightGBM.
+## 5. Credit Approval with Data Engineering & MLOps | [Ongoing](https://github.com/ava-ly/credit-approval)
+
+An end-to-end MLOps project for predicting credit card approval, featuring TDD, CI/CD, and Airflow.
 
 ## 6. Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 Project Goals:
