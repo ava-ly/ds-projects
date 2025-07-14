@@ -28,7 +28,8 @@
 
 ## 5. Credit Approval with Data Engineering & MLOps | [Ongoing](https://github.com/ava-ly/credit-approval)
 
-An end-to-end MLOps project for predicting credit card approval, featuring TDD, CI/CD, and Airflow.
+- An end-to-end MLOps pipeline with automated testing and deployment, orchestrated by Airflow, capable of processing data from cloud object storage (AWS S3) in a production-like environment.
+- Tech Stack: Airflow, PySpark, Pyarrow, Pandas, Numpy, Scikit-learn, XGBoost, Joblib, S3fs, Boto3, Pytest, Docker Compose.
 
 ## 6. Analysis and Clustering of Top Streamed Songs on Spotify | Ongoing
 Project Goals:
