@@ -40,7 +40,7 @@ Project Goals:
 ---
 ## Staying Updated with Data Science, Machine Learning and AI
 
-- [AINews](https://news.smol.ai): AI News for Nerds.
+- [AINews](https://news.smol.ai): AI Recap across socials (Twitter, Reddit, Discord, etc).
 - [Towards Data Science](https://towardsdatascience.com): Offers daily articles on data science, machine learning, and AI, suitable for beginners to advanced users.
 - [KDnuggets](https://www.kdnuggets.com): Provides news, articles, and trends in data science and AI, updated regularly with high-quality content.
 - [HackerNoon](https://hackernoon.com): Features a variety of AI and machine learning articles.
